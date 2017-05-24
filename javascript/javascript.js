@@ -25,7 +25,8 @@ var qIndex = 0;
 
 // Start game/reset on click
 function reset(){
-	$(".timerh").hide();
+	$(".timer").hide();
+	$(".tillnext").hide();
 	$(".inforow").hide();
 	$(".questions").empty();
 	$(".messages").text("Click Here to Play!");
@@ -42,8 +43,11 @@ function reset(){
 // Display question
 	// display options
 function startgame (){
-	$(".timerh").show();
+	$(".message").empty();
+	$(".choicebox").empty();
+	$(".timer").show();
 	$(".inforow").show();
+	$(".tillnext").hide();
 	$(".messages").text(questions[qIndex].question);
 	for (i = 1; i <= 4; i++){
 		var choices = $("<div>");
@@ -54,34 +58,56 @@ function startgame (){
 			.text(questions[qIndex][i]);
 		$(".choicebox").append(choices);
 	};
-	countdown.starttimer();
+	countdown.startqtimer();
 };
 
 var countdown = {
-	timeleft: 20,
+	timeleft: 7,
 	tillnext: 5,
 
-
+	// 20s Timer
 	startqtimer: function(){
 		qtimerID = setInterval(countdown.qcount, 1000);
 	},
-	nextqtimer: function(){
-		ntimerID = setInterval(countdown.ncount, 1000)
-	}
 	qcount: function(){
-		countdown.time--;
-		$(".timer").text(countdown.timeleft);
-	}
-	ncount: function(){
-		countdown.tillnext--;
-		$(".timer").text(countdown.tillnext)
+		if(countdown.timeleft > 0){
+			countdown.timeleft--;
+			$(".timer").text(countdown.timeleft);
+		} else {
+			clearInterval(countdown.qtimerID);
+			countdown.timeleft = 20;
+			unanswered++;
+			$(".unanswered").text(unanswered);
+			$(".timer").text(countdown.timeleft).hide();
+			debugger;
+			countdown.nextqtimer();
+		};
 	},
+	nextqtimer: function(){
+		$(".tillnext").show();
+		clearInterval(countdown.qtimerID);
+		ntimerID = setInterval(countdown.ncount, 1000)
+	},
+	ncount: function(){
+		if(countdown.tillnext > 0){
+			countdown.tillnext--;
+			$(".tillnext").text(countdown.tillnext)
+		} else {
+			startgame();
+			clearInterval(countdown.nextqtimer);
+		}
+	}
 };
 
 
 function select (){
 	var guessindex = ($(this).attr("qID"));
 	console.log($(this).attr("qID"));
+	$(".timer").hide();
+	debugger;
+	clearInterval(countdown.qtimerID);
+	timeleft = 20;
+	countdown.nextqtimer();
 	if(guessindex === questions[qIndex].correct){
 		console.log("right")
 		$(".messages").text("Correct!");

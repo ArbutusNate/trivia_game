@@ -79,7 +79,7 @@ div.questionrow{
 	z-index: -1;
 }
 .answerChoice:hover:before {
-	width: 50%;
+	width: 100%;
 }
 .questionbox{
 	margin-bottom: 25px;
@@ -92,6 +92,8 @@ div.questionrow{
 	position: absolute;
 	margin: 275px;
 	font-size: 25px;
+	background-image: URL("../assets/images/ringtext1.jpg");
+	width: 100%
 }
 /*Fonts*/
 @font-face {

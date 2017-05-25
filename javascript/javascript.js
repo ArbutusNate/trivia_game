@@ -5,35 +5,40 @@ var questions = [
 	2			: "Fellowship of the Ring",
 	3			: "The Two Towers",
 	4			: "A Feast for Crows",
-	correct		: "4"
+	correct		: "4",
+	imgindex	: "1"
 	},
 	{question 	: "The name of Sarumans Tower is...",
 	1			: "The Grey Tower",
 	2			: "Isengard",
 	3			: "Orthanc",
 	4			: "Helm's Deep",
-	correct 	: "3"
+	correct 	: "3",
+	imgindex	: "2"
 	},
 	{question 	: "The first race of Men were called...",
 	1			: "Númenóreans",
 	2 			: "Quendi",
 	3 			: "Falmari",
 	4			: "Gondorian",
-	correct 	: "1"
+	correct 	: "1",
+	imgindex	: "3"
 	},
 	{question 	: "Gandalfs original name was...",
 	1			: "Gandalf",
 	2			: "Olorin",
 	3			: "Mithrandir",
 	4			: "Tharkun",
-	correct 	: "2"
+	correct 	: "2",
+	imgindex	: "4"
 	},
 	{question 	: "Sammath Naur, where Frodo destroyed the Ring comes from which elvish language?",
 	1			: "Quenya",
 	2			: "Telerin",
 	3			: "Sindarin",
 	4			: "Nandorin",
-	correct 	: "3"
+	correct 	: "3",
+	imgindex	: "5"
 	},
 ];
 var correct = 0;
@@ -146,6 +151,10 @@ var countdown = {
 		} else {
 			$(".questionrow").children().empty();
 			startgame();
+			$(".victoryimg")
+				.empty()
+				.hide();
+			$(".infobox").show();
 			tillnext = 5;
 			clearInterval(ntimerID);
 		}
@@ -169,6 +178,13 @@ function select (){
 		$(".questionbox").text("Correct!");
 		correct++;
 		$(".correct").text(correct);
+		var victory = $("<div>");
+		victory
+			.show()
+			.html("<img class='victoryimg' src='./assets/images/answer" + questions[qIndex].imgindex + ".png'</img>");
+		$(".headrow").append(victory);
+		$(".infobox").hide();
+			
 	};
 	if(guessindex !== questions[qIndex].correct) {
 		console.log("wrong")

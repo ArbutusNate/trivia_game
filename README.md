@@ -1,1 +1,1 @@
-# trivia_game
+A Lord of the Rings Trivia Game. On github at: https://arbutusnate.github.io/trivia_game/.

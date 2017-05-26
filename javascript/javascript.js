@@ -40,6 +40,22 @@ var questions = [
 	correct 	: "3",
 	imgindex	: "5"
 	},
+	{question 	: "Galadriel is the ruler of which Elvish kingdom",
+	1			: "Kelethin",
+	2			: "Rivendell",
+	3			: "Queynos",
+	4			: "Murkwood",
+	correct 	: "2",
+	imgindex	: "6",
+	},
+	{question 	: "The ringbearer before Smeagol was...",
+	1			: "Aragorn",
+	2			: "Galadriel",
+	3			: "Treebeard",
+	4			: "Isildur",
+	correct 	: "4",
+	imgindex 	: "7"
+}
 ];
 var correct = 0;
 var incorrect = 0;
